@@ -1,23 +1,3 @@
-class Rabbit:
-
-    speed = 10
-    weight = 1
-
-    # Initialize a new rabbit racer
-    def __init__(self, racername):
-        self.name = racername
-
-
-class Turtle:
-
-    speed = 2
-    weight = 5
-
-    # Initialize a new turtle racer
-    def __init__(self, racername):
-        self.name = racername
-
-
 class RaceTrack:
 
     # Initialize a new track
@@ -36,14 +16,3 @@ class RaceTrack:
             print(animal1.name + " wins!")
         else:
             print(animal2.name + " wins!")
-
-
-# Tests
-turtle = Turtle("Jared")
-rabbit = Rabbit("Jack")
-
-track1 = RaceTrack(10, -50)
-track2 = RaceTrack(10, 50)
-
-track1.runrace(turtle, rabbit)
-track2.runrace(turtle, rabbit)

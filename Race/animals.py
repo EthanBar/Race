@@ -15,6 +15,7 @@ class Racer:
     def __init__(self, name, species):
         self.name = name
         self.species = species
+        self.determine_speed(species)
 
     # Calculate speed based on racer species
     def determine_speed(self, species):

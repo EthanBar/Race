@@ -8,8 +8,8 @@ class RaceTrack:
     # Simulate a race
     def runrace(self, animal1, animal2):
         # Calculate individual times
-        racetime1 = (animal1.speed * self.length) + (self.angle * animal1.weight)
-        racetime2 = (animal2.speed * self.length) + (self.angle * animal2.weight)
+        racetime1 = (self.length / animal1.speed) + (self.angle * animal1.weight)
+        racetime2 = (self.length/ animal2.speed) + (self.angle * animal2.weight)
 
         # Compare times for a winner
         if racetime1 < racetime2:

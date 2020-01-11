@@ -1,12 +1,12 @@
 import numpy
 
 
-# Generates a random speed based on a normal curve
-def generatespeed(mean, standard_deviation):
-    speed = numpy.random.normal(mean, standard_deviation)
-    while speed <= 0:  # Speeds can't be below zero!
-        speed = numpy.random.normal(mean, standard_deviation)
-    return speed
+# Generates a random number based on a normal curve
+def generate_random_normal(mean, standard_deviation):
+    num = numpy.random.normal(mean, standard_deviation)
+    while num <= 0:  # Speed and weight can't be below zero!
+        num = numpy.random.normal(mean, standard_deviation)
+    return num
 
 
 # Generic racer
@@ -16,17 +16,29 @@ class Racer:
         self.name = name
         self.species = species
         self.determine_speed(species)
+        self.determine_weight(species)
 
     # Calculate speed based on racer species
     def determine_speed(self, species):
         if species == Species.DOG:
-            self.speed = generatespeed(15, 10)
+            self.speed = generate_random_normal(15, 10)
         elif species == Species.CAT:
-            self.speed = generatespeed(25, 5)
+            self.speed = generate_random_normal(25, 5)
         elif species == Species.TURTLE:
-            self.speed = generatespeed(3, 3)
+            self.speed = generate_random_normal(3, 3)
         elif species == Species.RABBIT:
-            self.speed = generatespeed(35, 5)
+            self.speed = generate_random_normal(35, 5)
+
+    # Calculate weight based on racer species
+    def determine_weight(self, species):
+        if species == Species.DOG:
+            self.weight = generate_random_normal(45, 20)
+        elif species == Species.CAT:
+            self.weight = generate_random_normal(10, 5)
+        elif species == Species.TURTLE:
+            self.weight = generate_random_normal(20, 20)
+        elif species == Species.RABBIT:
+            self.weight = generate_random_normal(3, 1.5)
 
 # Enum for species
 class Species:

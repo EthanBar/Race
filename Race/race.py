@@ -1,6 +1,5 @@
 import animals
 import manager
-# class RaceManager:
 
 
 # Tests

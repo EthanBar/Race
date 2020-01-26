@@ -35,7 +35,6 @@ class Track:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
         lower = 0
         upper = 0
-        print(self.points)
         for i in range(0, len(self.points)):
             if xpos < self.points[i]:
                 lower = self.points[i - 1]
@@ -66,7 +65,7 @@ class Track:
                 return "-1"  # did not finish
 
     # Simulate a race
-    def runrace(self, racers, counts_per_second):
+    def run_race(self, racers, counts_per_second):
         """
 
         :param racers: Array containing each racer

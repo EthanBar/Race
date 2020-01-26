@@ -45,6 +45,12 @@ class Track:
         return slope
 
     def determine_time(self, racer, counts_per_second):
+        """
+        Calculates the time to finish this track for a specific racer
+        :param racer: Which racer is attempting the race
+        :param counts_per_second: How many simulation iterations per second
+        :return (float): race completion time in seconds
+        """
         velocity = 0
         position = 0
         time = 0
@@ -61,6 +67,12 @@ class Track:
 
     # Simulate a race
     def runrace(self, racers, counts_per_second):
+        """
+
+        :param racers: Array containing each racer
+        :param counts_per_second: How many simulation iterations per second
+        :return:
+        """
 
         times = {}
 
@@ -69,5 +81,3 @@ class Track:
 
         for result in times:
             print("Racer " + result + " finished in " + str(times[result]) + " seconds!")
-
-

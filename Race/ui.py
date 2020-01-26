@@ -1,6 +1,6 @@
 import click
-import animals
-import manager
+from Race import animals
+from Race import trackphysics
 
 racers = {}
 
@@ -27,8 +27,13 @@ def race():
         enrolled_racers = []
         for i in range(racer_count):
             enrolled_racers.append(get_racer())
-        track = manager.RaceTrack(10, 0)
-        track.runrace(enrolled_racers[0], enrolled_racers[1])
+        track = trackphysics.Track(length=10)
+        track.add_node(xpos=9, height=10)
+        track.add_node(xpos=7, height=0)
+        print(track.find_slope(8))
+        print(track.find_slope(2))
+        print(track.find_slope(8.9))
+        # track.runrace(enrolled_racers[0], enrolled_racers[1])
 
 
 if __name__ == '__main__':

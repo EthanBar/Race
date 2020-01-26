@@ -1,5 +1,5 @@
-import animals
-import manager
+from Race import animals
+from Race import manager
 
 
 # Tests

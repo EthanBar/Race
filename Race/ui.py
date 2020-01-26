@@ -28,12 +28,10 @@ def race():
         for i in range(racer_count):
             enrolled_racers.append(get_racer())
         track = trackphysics.Track(length=10)
-        track.add_node(xpos=9, height=10)
-        track.add_node(xpos=7, height=0)
-        print(track.find_slope(8))
-        print(track.find_slope(2))
-        print(track.find_slope(8.9))
-        # track.runrace(enrolled_racers[0], enrolled_racers[1])
+        track.add_node(xpos=3, height=-1)
+        track.add_node(xpos=5, height=0)
+        track.add_node(xpos=9, height=0.5)
+        track.runrace(enrolled_racers, 10)
 
 
 if __name__ == '__main__':

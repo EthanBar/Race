@@ -40,20 +40,34 @@ class Track:
             if xpos < self.points[i]:
                 lower = self.points[i - 1]
                 upper = self.points[i]
-                print("xpos of " + str(xpos) + " found a lower of " + str(lower) + " and upper of " + str(upper))
                 break
         slope = (self.nodes[upper] - self.nodes[lower]) / (upper - lower)  # rise over run formula
         return slope
 
-    # Simulate a race
-    def runrace(self, animal1, animal2):
-        # Calculate individual times
-        racetime1 = (self.length / animal1.speed) + (self.angle * animal1.weight)
-        racetime2 = (self.length / animal2.speed) + (self.angle * animal2.weight)
+    def determine_time(self, racer, counts_per_second):
+        velocity = 0
+        position = 0
+        time = 0
+        while True:
+            velocity += (racer.acceleration - self.find_slope(position)) / counts_per_second
+            position += velocity / counts_per_second
+            time += 1 / counts_per_second
 
-        # Compare times for a winner
-        if racetime1 < racetime2:
-            print(animal1.name + " wins!")
-        else:
-            print(animal2.name + " wins!")
+            if position > self.length:
+                return time
+
+            if velocity <= 0:
+                return "-1"  # did not finish
+
+    # Simulate a race
+    def runrace(self, racers, counts_per_second):
+
+        times = {}
+
+        for racer in racers:
+            times[racer.name] = self.determine_time(racer, counts_per_second)
+
+        for result in times:
+            print("Racer " + result + " finished in " + str(times[result]) + " seconds!")
+
 

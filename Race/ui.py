@@ -23,14 +23,12 @@ def race():
         racers[name] = animals.Racer(name, species)  # add new racer to dictionary
 
     while click.confirm("Would you like to run a race?"):
-        # TODO -  implement race
         racer_count = click.prompt("How many racers?", type=int)
         enrolled_racers = []
         for i in range(racer_count):
             enrolled_racers.append(get_racer())
         track = manager.RaceTrack(10, 0)
         track.runrace(enrolled_racers[0], enrolled_racers[1])
-
 
 
 if __name__ == '__main__':

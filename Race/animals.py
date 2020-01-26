@@ -20,6 +20,10 @@ class Racer:
 
     # Calculate speed based on racer species
     def determine_speed(self, species):
+        """
+        :param species:
+        :return:
+        """
         if species == Species.DOG:
             self.speed = generate_random_normal(15, 10)
         elif species == Species.CAT:
@@ -39,6 +43,7 @@ class Racer:
             self.weight = generate_random_normal(20, 20)
         elif species == Species.RABBIT:
             self.weight = generate_random_normal(3, 1.5)
+
 
 # Enum for species
 class Species:

@@ -1,6 +1,23 @@
 import numpy
 from Race import trackphysics
 
+
+# Enum for species
+class Species:
+    DOG = 1
+    CAT = 2
+    TURTLE = 3
+    RABBIT = 4
+
+
+animals = {
+    Species.DOG: [15, 10],
+    Species.CAT: [25, 5],
+    Species.TURTLE: [3, 3],
+    Species.RABBIT: [35, 5]
+}
+
+
 # Generates a random number based on a normal curve
 def generate_random_normal(mean, standard_deviation):
     num = numpy.random.normal(mean, standard_deviation)
@@ -15,27 +32,8 @@ class Racer:
     def __init__(self, name, species):
         self.name = name
         self.species = species
-        self.determine_speed(species)
 
-    # Calculate speed based on racer species
-    def determine_speed(self, species):
-        """
-        :param species:
-        :return:
-        """
-        if species == Species.DOG:
-            self.acceleration = generate_random_normal(15, 10)
-        elif species == Species.CAT:
-            self.acceleration = generate_random_normal(25, 5)
-        elif species == Species.TURTLE:
-            self.acceleration = generate_random_normal(3, 3)
-        elif species == Species.RABBIT:
-            self.acceleration = generate_random_normal(35, 5)
+        species_stats = animals[species]
+        self.acceleration = generate_random_normal(species_stats[0], species_stats[1])
 
 
-# Enum for species
-class Species:
-    DOG = 1
-    CAT = 2
-    TURTLE = 3
-    RABBIT = 4

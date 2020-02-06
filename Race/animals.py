@@ -16,7 +16,6 @@ class Racer:
         self.name = name
         self.species = species
         self.determine_speed(species)
-        self.determine_weight(species)
 
     # Calculate speed based on racer species
     def determine_speed(self, species):
@@ -32,21 +31,6 @@ class Racer:
             self.acceleration = generate_random_normal(3, 3)
         elif species == Species.RABBIT:
             self.acceleration = generate_random_normal(35, 5)
-
-    # Calculate weight based on racer species
-    def determine_weight(self, species):
-        if species == Species.DOG:
-            self.weight = generate_random_normal(45, 20)
-        elif species == Species.CAT:
-            self.weight = generate_random_normal(10, 5)
-        elif species == Species.TURTLE:
-            self.weight = generate_random_normal(20, 20)
-        elif species == Species.RABBIT:
-            self.weight = generate_random_normal(3, 1.5)
-
-
-
-
 
 
 # Enum for species

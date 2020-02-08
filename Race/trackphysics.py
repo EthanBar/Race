@@ -3,17 +3,16 @@ import math
 
 class Track:
 
-    def __init__(self, length):
+    def __init__(self, array):
         """
         Creates a new track of a certain length.
 
         By default, start and end nodes a created with a height of 0
         :param length (float): How long the track should be (cannot be changed later)
         """
-        self.points = []
-        for i in range(0, length + 1):
-            self.points.append(i)
-        self.length = length
+        self.points = array
+        self.length = len(array)
+
 
     def add_node(self, xpos, height):
         """
@@ -36,6 +35,7 @@ class Track:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
         lower = int(math.trunc(xpos))
         upper = lower + 1
+        print(upper)
         slope = (self.points[upper] - self.points[lower])  # rise over run formula
         return slope
 

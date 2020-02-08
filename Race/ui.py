@@ -9,7 +9,6 @@ TRACKS = {}
 racerlist = []
 
 
-
 def get_racer():
     """
     Asks for user input of a racer's name until a valid racer is found
@@ -33,6 +32,9 @@ def get_track():
 
 
 def manual_input_race():
+    """
+        Main user interface. Asks for racers to register, tracks to create, and races to run.
+    """
     #  Add a new racer
     while click.confirm("Would you like to register a racer?"):
         name = click.prompt("What is your racer's name?")
@@ -55,21 +57,7 @@ def manual_input_race():
             track.add_node(float(point), float(height))
         TRACKS[name] = track
 
-
-@click.command()
-@click.option("--track", default="0,0,0,0,0")  # , help="input track, format: 0,2,5,2,-3,0"
-@click.argument("racers", nargs=-1)  # , help="input any number of racers, format: Bob,Dog Jerald,Rabbit"
-def race(track, racers):
-    track = track.split(",")
-    for racer in racers:
-        name = racer.split(",")[0]
-        species = racer.split(",")[1]
-        RACERS[name] = animals.Racer(name, species)  # add new racer to dictionary
-    """
-        Main user interface. Asks for racers to register, tracks to create, and races to run.
-    """
-
-    #  Simulate a race
+        #  Simulate a race
     while click.confirm("Would you like to run a race?"):
         track = get_track()
         racer_count = click.prompt("How many racers?", type=int)
@@ -78,6 +66,27 @@ def race(track, racers):
             enrolled_racers.append(get_racer())
         count_per_second = click.prompt("How many simulations per second?", type=int)
         track.run_race(enrolled_racers, count_per_second)
+
+
+@click.command()
+@click.option("--track", default="0,0,0,0,0")
+@click.option("--sim_speed", default="3")
+@click.argument("racers", nargs=-1)
+def race(track, sim_speed, racers):
+    """
+    :param track: user-input, track of elevations
+    :param racers: user-input, tuple containing each racer name and their species
+    :param sim_speed: user-input, how many simulations per second
+    :return:
+    """
+    trackarray = track.split(",")
+    racetrack = trackphysics.Track(list(map(int, trackarray)))
+
+    for racer in racers:
+        name = racer.split(",")[0]
+        species = racer.split(",")[1]
+        racerlist.append(animals.Racer(name, species))  # add new racer to dictionary
+    racetrack.run_race(racerlist, int(sim_speed))
 
 
 if __name__ == '__main__':

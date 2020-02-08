@@ -6,6 +6,9 @@ import trackphysics
 RACERS = {}
 TRACKS = {}
 
+racerlist = []
+
+
 
 def get_racer():
     """
@@ -29,16 +32,7 @@ def get_track():
     return TRACKS[track]
 
 
-@click.command()
-@click.option("--track", default="0,0,0,0,0", help="")
-@click.argument("racers", nargs=-1, help="")
-def race(track, racers):
-    click.echo(track)
-    click.echo(racers)
-    """
-        Main user interface. Asks for racers to register, tracks to create, and races to run.
-    """
-
+def manual_input_race():
     #  Add a new racer
     while click.confirm("Would you like to register a racer?"):
         name = click.prompt("What is your racer's name?")
@@ -60,6 +54,20 @@ def race(track, racers):
             height = click.prompt("What is the height at point " + str(point) + "?")
             track.add_node(float(point), float(height))
         TRACKS[name] = track
+
+
+@click.command()
+@click.option("--track", default="0,0,0,0,0")  # , help="input track, format: 0,2,5,2,-3,0"
+@click.argument("racers", nargs=-1)  # , help="input any number of racers, format: Bob,Dog Jerald,Rabbit"
+def race(track, racers):
+    track = track.split(",")
+    for racer in racers:
+        name = racer.split(",")[0]
+        species = racer.split(",")[1]
+        RACERS[name] = animals.Racer(name, species)  # add new racer to dictionary
+    """
+        Main user interface. Asks for racers to register, tracks to create, and races to run.
+    """
 
     #  Simulate a race
     while click.confirm("Would you like to run a race?"):

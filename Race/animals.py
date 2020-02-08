@@ -1,18 +1,34 @@
 import numpy
 
-# Enum for species
+
 class Species:
+    """
+    Enum for referencing species
+    """
     DOG = 1
     CAT = 2
     TURTLE = 3
     RABBIT = 4
+    ELEPHANT = 5
 
 
-animals = {
+# Contains animals unique statistics
+animalStats = {
     Species.DOG: [15, 10],
     Species.CAT: [25, 5],
     Species.TURTLE: [3, 3],
-    Species.RABBIT: [35, 5]
+    Species.RABBIT: [35, 5],
+    Species.ELEPHANT: [25, 3]
+}
+
+
+# For converting user input into enum
+animalNames = {
+    Species.DOG: "Dog",
+    Species.CAT: "Cat",
+    Species.TURTLE: "Turtle",
+    Species.RABBIT: "Rabbit",
+    Species.ELEPHANT: "Elephant"
 }
 
 
@@ -29,9 +45,14 @@ class Racer:
 
     def __init__(self, name, species):
         self.name = name
-        self.species = species
-
-        species_stats = animals[species]
+        self.species = self.convert_animal_to_enum(species)
+        species_stats = animalStats[self.species]
         self.acceleration = generate_random_normal(species_stats[0], species_stats[1])
 
+    @staticmethod
+    def convert_animal_to_enum(species):
+        for animal, animalName in animalNames.items():
+            if species == animalName:
+                return animal
+        raise ValueError('{} is not a valid animal name'.format(species))
 

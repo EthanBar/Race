@@ -1,4 +1,4 @@
-
+import math
 class Track:
 
     def __init__(self, length):
@@ -8,8 +8,9 @@ class Track:
         By default, start and end nodes a created with a height of 0
         :param length (float): How long the track should be (cannot be changed later)
         """
-        self.nodes = {0: 0, length: 0}
-        self.points = [0, length]
+        self.points = []
+        for i in range(0, length + 1):
+            self.points.append(i)
         self.length = length
 
     def add_node(self, xpos, height):
@@ -21,9 +22,7 @@ class Track:
         """
         if xpos < 0 or xpos > self.length:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
-        self.nodes[xpos] = height
-        self.points.append(xpos)
-        self.points.sort()
+        self.points[xpos] = height
 
     def find_slope(self, xpos):
         """
@@ -33,14 +32,9 @@ class Track:
         """
         if xpos < 0 or xpos > self.length:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
-        lower = 0
-        upper = 0
-        for i in range(0, len(self.points)):
-            if xpos < self.points[i]:
-                lower = self.points[i - 1]
-                upper = self.points[i]
-                break
-        slope = (self.nodes[upper] - self.nodes[lower]) / (upper - lower)  # rise over run formula
+        lower = int(math.trunc(xpos))
+        upper = lower + 1
+        slope = (self.points[upper] - self.points[lower])  # rise over run formula
         return slope
 
     def determine_time(self, racer, counts_per_second):

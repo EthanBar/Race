@@ -47,7 +47,7 @@ def race():
     while click.confirm("Would you like to create a track?"):
         name = click.prompt("What is the track's name?")
         length = click.prompt("How long is the track?")
-        track = trackphysics.Track(length=float(length))
+        track = trackphysics.Track(length=int(length))
         #  Add as many points as desired
         while True:
             point = click.prompt("Enter a point to edit, or say 'stop' to finish track:")

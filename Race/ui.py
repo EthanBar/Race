@@ -1,6 +1,6 @@
 import click
-from Race import animals
-from Race import trackphysics
+import animals
+import trackphysics
 
 
 RACERS = {}
@@ -30,7 +30,11 @@ def get_track():
 
 
 @click.command()
-def race():
+@click.option("--track", default="0,0,0,0,0", help="")
+@click.argument("racers", nargs=-1, help="")
+def race(track, racers):
+    click.echo(track)
+    click.echo(racers)
     """
         Main user interface. Asks for racers to register, tracks to create, and races to run.
     """

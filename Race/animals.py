@@ -1,6 +1,4 @@
 import numpy
-from Race import trackphysics
-
 
 # Enum for species
 class Species:

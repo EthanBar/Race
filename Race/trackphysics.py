@@ -11,8 +11,7 @@ class Track:
         :param length (float): How long the track should be (cannot be changed later)
         """
         self.points = array
-        self.length = len(array)
-
+        self.length = len(array) - 1
 
     def add_node(self, xpos, height):
         """
@@ -33,7 +32,7 @@ class Track:
         """
         if xpos < 0 or xpos > self.length:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
-        lower = int(math.trunc(xpos))
+        lower = math.floor(xpos)
         upper = lower + 1
         print(upper)
         slope = (self.points[upper] - self.points[lower])  # rise over run formula

@@ -69,9 +69,9 @@ def manual_input_race():
 
 
 @click.command()
+@click.argument("racers", nargs=-1)
 @click.option("--track", default="0,0,0,0,0")
 @click.option("--sim_speed", default="3")
-@click.argument("racers", nargs=-1)
 def race(track, sim_speed, racers):
     """
     :param track: user-input, track of elevations

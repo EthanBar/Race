@@ -1,7 +1,8 @@
 import numpy
+from enum import Enum
 
 
-class Species:
+class Species(Enum):
     """
     Enum for referencing species
     """

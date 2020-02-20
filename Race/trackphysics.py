@@ -34,7 +34,6 @@ class Track:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
         lower = math.floor(xpos)
         upper = lower + 1
-        print(upper)
         slope = (self.points[upper] - self.points[lower])  # rise over run formula
         return slope
 
@@ -54,7 +53,7 @@ class Track:
             time += 1 / counts_per_second
 
             if position > self.length:
-                return time
+                return round(time, 5)
 
             if velocity <= 0:
                 return "-1"  # did not finish

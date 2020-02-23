@@ -13,18 +13,7 @@ class Track:
         self.points = array
         self.length = len(array) - 1
 
-    def add_node(self, xpos, height):
-        """
-        Adds a new node to the track
-        :param xpos: The x-position being modified
-        :param height: The height to set the x-position to
-        :return:
-        """
-        if xpos < 0 or xpos > self.length:
-            raise ValueError("X position " + str(xpos) + " is outside the range of this track")
-        self.points[xpos] = height
-
-    def find_slope(self, xpos):
+    def _find_slope(self, xpos):
         """
         Calculates the slope of the track at a given point
         :param xpos: The x-position to find the slope of
@@ -34,43 +23,44 @@ class Track:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
         lower = math.floor(xpos)
         upper = lower + 1
+        print(upper)
         slope = (self.points[upper] - self.points[lower])  # rise over run formula
         return slope
 
-    def determine_time(self, racer, counts_per_second):
+    def _determine_time(self, racer, calculations_per_unit):
         """
         Calculates the time to finish this track for a specific racer
         :param racer: Which racer is attempting the race
-        :param counts_per_second: How many simulation iterations per second
+        :param calculations_per_unit: How many simulation iterations per second
         :return (float): race completion time in seconds
         """
         velocity = 0
-        position = 0
         time = 0
-        while True:
-            velocity += (racer.acceleration - self.find_slope(position)) / counts_per_second
-            position += velocity / counts_per_second
-            time += 1 / counts_per_second
-
-            if position > self.length:
-                return round(time, 5)
-
+        # TODO - Improve physics calculation
+        for i in range(self.length):
+            slope = self._find_slope(i)
+            total_velocity = 0
+            for _ in range(calculations_per_unit):
+                velocity += (racer.acceleration - slope) / calculations_per_unit
+                total_velocity += velocity
+            time += 1 / total_velocity
             if velocity <= 0:
                 return "-1"  # did not finish
+        return round(time, 6)
 
     # Simulate a race
-    def run_race(self, racers, counts_per_second):
+    def run_race(self, racers, calculations_per_unit):
         """
 
         :param racers: Array containing each racer
-        :param counts_per_second: How many simulation iterations per second
+        :param calculations_per_unit: How many simulation iterations per unit of track
         :return:
         """
 
         times = {}
 
         for racer in racers:
-            times[racer.name] = self.determine_time(racer, counts_per_second)
+            times[racer.name] = self._determine_time(racer, calculations_per_unit)
 
         for result in times:
             print("Racer " + result + " finished in " + str(times[result]) + " seconds!")

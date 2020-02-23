@@ -16,10 +16,10 @@ class Species(Enum):
 # Contains animals unique statistics
 # [mean, standard deviation]
 animalStats = {
-    Species.DOG: (15, 10),
-    Species.CAT: (25, 5),
-    Species.TURTLE: (3, 3),
-    Species.RABBIT: (35, 5),
+    Species.DOG: (15, 2),
+    Species.CAT: (25, 1),
+    Species.TURTLE: (3, 1),
+    Species.RABBIT: (35, 3),
     Species.ELEPHANT: (25, 3)
 }
 

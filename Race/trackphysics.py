@@ -31,7 +31,7 @@ class Track:
         """
         Calculates the time to finish this track for a specific racer
         :param racer: Which racer is attempting the race
-        :param calculations_per_unit: How many simulation iterations per second
+        :param calculations_per_unit: How many simulation iterations per unit of track
         :return (float): race completion time in seconds
         """
         velocity = 0

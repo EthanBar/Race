@@ -34,18 +34,27 @@ animalNames = {
 }
 
 
-# Generates a random number based on a normal curve
 def generate_random_normal(mean, standard_deviation):
+    """
+    Generates a random number based on a normal curve
+    :param mean: average number if many numbers were generated
+    :param standard_deviation: how far the average value strays from the mean
+    :return: random float point
+    """
     num = numpy.random.normal(mean, standard_deviation)
     while num <= 0:  # Speed and weight can't be below zero!
         num = numpy.random.normal(mean, standard_deviation)
     return num
 
 
-# Generic racer
 class Racer:
 
     def __init__(self, name, species):
+        """
+        Creates a new generic racer
+        :param name: string name of racer
+        :param species: string used to find animal species
+        """
         self.name = name
         self.species = self.convert_animal_to_enum(species)
         species_stats = animalStats[self.species]
@@ -55,6 +64,11 @@ class Racer:
 
     @staticmethod
     def convert_animal_to_enum(species):
+        """
+        Takes a string of an animal species, converts to enum
+        :param species: string used to find animal species
+        :return: enum reference to animal
+        """
         for animal, animalName in animalNames.items():
             if species == animalName:
                 return animal

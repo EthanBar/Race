@@ -23,7 +23,6 @@ class Track:
             raise ValueError("X position " + str(xpos) + " is outside the range of this track")
         lower = math.floor(xpos)
         upper = lower + 1
-        print(upper)
         slope = (self.points[upper] - self.points[lower])  # rise over run formula
         return slope
 

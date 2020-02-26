@@ -59,7 +59,7 @@ class Track:
         times = {}
 
         for racer in racers:
-            times[racer.name] = self._determine_time(racer, calculations_per_unit)
+            times[racer.name] = self._determine_time(racer, calculations_per_unit)  # TODO: list comprehension
 
         for result in times:
             print("Racer " + result + " finished in " + str(times[result]) + " seconds!")

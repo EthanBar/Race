@@ -1,12 +1,13 @@
 import click
-import animals
-import trackphysics
+from Race import animals
+from Race import trackphysics
 
 
 RACERS = {}
 TRACKS = {}
 
 racerlist = []
+
 
 
 @click.command()

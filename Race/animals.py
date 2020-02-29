@@ -47,8 +47,6 @@ class Racer:
         """
         self.name = name
         self.species = Species[species.upper()]
-        species_stats = animalStats[self.species]
-        self.mean_speed = species_stats[0]
-        self.speed_standard_deviation = species_stats[1]
+        self.mean_speed, self.speed_standard_deviation = animalStats[self.species]
         self.acceleration = generate_random_normal(self.mean_speed, self.speed_standard_deviation)
 

@@ -59,17 +59,18 @@ class Track:
         # {time: [racers]}
         racer_results = {}
 
+        # Run races and record results to racer_results
         for racer in racers:
             time = self._determine_time(racer, calculations_per_unit)
-            if time in racer_results:
+            if time in racer_results.keys():
                 racer_results[time].append(racer.name)
             else:
                 racer_results[time] = [racer.name]
 
-        ordered_times = sorted(racer_results)
-
+        # Iterate through race times and print results
         place = 1
-        for time in ordered_times:
-            for result in racer_results[time]:
-                print(str(place) + ". " + result + " finished in " + str(time) + " seconds!")
+        for time in sorted(racer_results):
+            for racer_name in racer_results[time]:
+                message = '{}. {} finished in {} seconds!'.format(place, racer_name, time)
+                print(message)
             place += len(racer_results[time])

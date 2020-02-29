@@ -56,10 +56,20 @@ class Track:
         :return:
         """
 
-        times = {}
+        # {time: [racers]}
+        racer_results = {}
 
         for racer in racers:
-            times[racer.name] = self._determine_time(racer, calculations_per_unit)  # TODO: list comprehension
+            time = self._determine_time(racer, calculations_per_unit)
+            if time in racer_results:
+                racer_results[time].append(racer.name)
+            else:
+                racer_results[time] = [racer.name]
 
-        for result in times:
-            print("Racer " + result + " finished in " + str(times[result]) + " seconds!")
+        ordered_times = sorted(racer_results)
+
+        place = 1
+        for time in ordered_times:
+            for result in racer_results[time]:
+                print(str(place) + ". " + result + " finished in " + str(time) + " seconds!")
+            place += len(racer_results[time])

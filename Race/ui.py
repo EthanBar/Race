@@ -1,6 +1,6 @@
 import click
-from Race import animals
-from Race import trackphysics
+import animals
+import trackphysics
 
 
 RACERS = {}

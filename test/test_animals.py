@@ -11,6 +11,11 @@ class Tests(unittest.TestCase):
         self.assertEqual(len(animals.Species), len(animals.animalStats))
         # self.assertRaises()
 
+    def test_animal_generation(self):
+        animal = animals.Racer("Bob", animals.Species(1).name)
+        self.assertEqual(animal.name, "Bob")
+        self.assertTrue(animal.acceleration > 0)
+
 
 if __name__ == '__main__':
     unittest.main()

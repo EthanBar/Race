@@ -9,6 +9,7 @@ class Tests(unittest.TestCase):
 
     def test_enum_structure(self):
         self.assertEqual(len(animals.Species), len(animals.animalStats))
+        # self.assertRaises()
 
 
 if __name__ == '__main__':

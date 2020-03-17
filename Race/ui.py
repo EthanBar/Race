@@ -9,7 +9,6 @@ TRACKS = {}
 racerlist = []
 
 
-
 @click.command()
 @click.argument("racers", nargs=-1)
 @click.option("--track", default="0,0,0,0,0")

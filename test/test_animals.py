@@ -16,6 +16,9 @@ class Tests(unittest.TestCase):
         self.assertEqual(animal.name, "Bob")
         self.assertTrue(animal.acceleration > 0)
 
+    def test_incorrect_species_name(self):
+        self.assertRaises(ValueError, animals.Racer.__init__, animals.Racer, "Bob", "Sharknoceros")
+
 
 if __name__ == '__main__':
     unittest.main()

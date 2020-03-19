@@ -46,7 +46,10 @@ class Racer:
         :param species: string used to find animal species
         """
         self.name = name
-        self.species = Species[species.upper()]
+        try:
+            self.species = Species[species.upper()]
+        except KeyError:
+            raise ValueError("Animal species {} not found in implemented species".format(species))
         self.mean_speed, self.speed_standard_deviation = animalStats[self.species]
         self.acceleration = generate_random_normal(self.mean_speed, self.speed_standard_deviation)
 

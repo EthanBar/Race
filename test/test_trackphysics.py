@@ -16,9 +16,12 @@ class Tests(unittest.TestCase):
 
     def test_empty_racers(self):
         try:
-            trackphysics.Track.run_race(trackphysics.Track([]), [], 1)
+            trackphysics.Track.run_race(trackphysics.Track([0]), [], 1)
         except:
             self.fail("Empty array of racers caused track to raise exception")
+
+    def test_empty_track(self):
+        self.assertRaises(ValueError, trackphysics.Track.__init__, trackphysics.Track, [])
 
     def test_determine_time(self):
         track = trackphysics.Track

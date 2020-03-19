@@ -10,8 +10,11 @@ class Track:
         By default, start and end nodes a created with a height of 0
         :param length (float): How long the track should be (cannot be changed later)
         """
+        if len(array) == 0:
+            raise ValueError("Track cannot be zero long")
         self.points = array
         self.length = len(array) - 1
+
 
     def _find_slope(self, xpos):
         """

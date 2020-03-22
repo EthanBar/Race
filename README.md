@@ -2,6 +2,8 @@
 
 **Animal race track simulator with a focus on clear, readable, and pythonic code.**
 
+Developed in Python 3.6
+
 ## Installation
 
 Use package manager [pip](https://pip.pypa.io/en/stable/) to install click and NumPy

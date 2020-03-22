@@ -9,7 +9,6 @@ class Tests(unittest.TestCase):
 
     def test_enum_structure(self):
         self.assertEqual(len(animals.Species), len(animals.animalStats))
-        # self.assertRaises()
 
     def test_animal_generation(self):
         animal = animals.Racer("Bob", animals.Species(1).name)
@@ -17,7 +16,8 @@ class Tests(unittest.TestCase):
         self.assertTrue(animal.acceleration > 0)
 
     def test_incorrect_species_name(self):
-        self.assertRaises(ValueError, animals.Racer.__init__, animals.Racer, "Bob", "Sharknoceros")
+        with self.assertRaises(ValueError):
+            animals.Racer("Bob", "Sharknoceros")
 
 
 if __name__ == '__main__':

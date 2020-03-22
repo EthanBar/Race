@@ -15,22 +15,26 @@ class Tests(unittest.TestCase):
         self.assertEqual(trackphysics.Track._find_slope(track, 0.5), 1)
 
     def test_empty_racers(self):
-        try:
-            trackphysics.Track.run_race(trackphysics.Track([0]), [], 1)
-        except:
-            self.fail("Empty array of racers caused track to raise exception")
+        trackphysics.Track.run_race(trackphysics.Track([0]), [], 1)
 
     def test_empty_track(self):
-        self.assertRaises(ValueError, trackphysics.Track.__init__, trackphysics.Track, [])
+        with self.assertRaises(ValueError):
+            trackphysics.Track([])
 
     def test_determine_time(self):
-        track = trackphysics.Track
+        track = trackphysics.Track([0, 1])
         track.points = [0, 1]
         track.length = 1
-        animal = animals.Racer
-        animal.acceleration = 0.5
-        self.assertEqual(trackphysics.Track._determine_time(track, animal, 1), 5)
+        animal = animals.Racer("Bob", "Dog")
+        animal.acceleration = 5
+        self.assertEqual(trackphysics.Track._determine_time(track, animal, 1), 0.25)
 
+    def test_length_extremes(self):
+        track = trackphysics.Track([0, 1])
+        with self.assertRaises(ValueError):
+            track._find_slope(-1)
+        with self.assertRaises(ValueError):
+            track._find_slope(2)
 
 
 if __name__ == '__main__':

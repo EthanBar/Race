@@ -27,10 +27,12 @@ animalStats = {
 def generate_random_normal(mean, standard_deviation):
     """
     Generates a random number based on a normal curve
-    :param mean: average number if many numbers were generated, should be a positive # TODO
-    :param standard_deviation: how far the average value strays from the mean
+    :param mean: average number if many numbers were generated, should be positive
+    :param standard_deviation: how far the average value strays from the mean, should be positive
     :return: random float point
     """
+    if mean < 0 or standard_deviation < 0:
+        raise ValueError("Cannot generate acceleration from negative mean or standard deviation")
     num = numpy.random.normal(mean, standard_deviation)
     while num <= 0:  # Speed and weight can't be below zero!
         num = numpy.random.normal(mean, standard_deviation)

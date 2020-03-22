@@ -6,6 +6,10 @@ class Tests(unittest.TestCase):
 
     def test_normal_distribution(self):
         self.assertTrue(animals.generate_random_normal(1, 10) > 0)
+        with self.assertRaises(ValueError):
+            animals.generate_random_normal(-1, 1)
+        with self.assertRaises(ValueError):
+            animals.generate_random_normal(1, -1)
 
     def test_enum_structure(self):
         self.assertEqual(len(animals.Species), len(animals.animalStats))

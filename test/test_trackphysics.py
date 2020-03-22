@@ -15,7 +15,8 @@ class Tests(unittest.TestCase):
         self.assertEqual(trackphysics.Track._find_slope(track, 0.5), 1)
 
     def test_empty_racers(self):
-        trackphysics.Track.run_race(trackphysics.Track([0]), [], 1)
+        with self.assertRaises(ValueError):
+            trackphysics.Track.run_race(trackphysics.Track([0]), [], 1)
 
     def test_empty_track(self):
         with self.assertRaises(ValueError):

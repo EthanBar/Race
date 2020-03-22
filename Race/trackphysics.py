@@ -57,6 +57,9 @@ class Track:
         :return:
         """
 
+        if len(racers) == 0:
+            raise ValueError("Can't run a race with no racers")
+
         racer_results = {}
 
         # Run races and record results to racer_results

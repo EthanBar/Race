@@ -27,7 +27,7 @@ animalStats = {
 def generate_random_normal(mean, standard_deviation):
     """
     Generates a random number based on a normal curve
-    :param mean: average number if many numbers were generated
+    :param mean: average number if many numbers were generated, should be a positive # TODO
     :param standard_deviation: how far the average value strays from the mean
     :return: random float point
     """
@@ -46,10 +46,9 @@ class Racer:
         :param species: string used to find animal species
         """
         self.name = name
-        try:
-            self.species = Species[species.upper()]
-        except KeyError:
+        if species.upper() not in Species.__members__:
             raise ValueError("Animal species {} not found in implemented species".format(species))
+        self.species = Species[species.upper()]
         self.mean_speed, self.speed_standard_deviation = animalStats[self.species]
         self.acceleration = generate_random_normal(self.mean_speed, self.speed_standard_deviation)
 

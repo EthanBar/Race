@@ -15,7 +15,6 @@ class Track:
         self.points = array
         self.length = len(array) - 1
 
-
     def _find_slope(self, xpos):
         """
         Calculates the slope of the track at a given point
@@ -51,15 +50,13 @@ class Track:
         return round(time, 4)
 
     # Simulate a race
-    def run_race(self, racers, calculations_per_unit):
+    def run_race(self, racers, calculations_per_unit=1):
         """
-
         :param racers: Array containing each racer
         :param calculations_per_unit: How many simulation iterations per unit of track
         :return:
         """
 
-        # {time: [racers]}
         racer_results = {}
 
         # Run races and record results to racer_results

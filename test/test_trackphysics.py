@@ -35,6 +35,16 @@ class Tests(unittest.TestCase):
         sys.stdout = sys.__stdout__
         self.assertEqual("1. Bob finished in 1 seconds!\n2. Joe finished in 2 seconds!\n", capturedOutput.getvalue())
 
+    @patch('Race.trackphysics.Track._find_slope', side_effect=[1])
+    def test_determine_time_mock_slope(self, mock_slope):
+        track = trackphysics.Track([0, 1])
+        track.points = [0, 0.5]
+        track.length = 1
+
+        racer1 = animals.Racer("Bob", "Dog")
+        racer1.acceleration = 2
+
+        self.assertEqual(trackphysics.Track._determine_time(track, racer1, 2), 0.6667)
 
     def test_empty_track(self):
         with self.assertRaises(ValueError):

@@ -11,6 +11,13 @@ class Tests(unittest.TestCase):
         print(mock_normal.__dict__)
         self.assertEqual(mock_normal.call_count, 1)
 
+    @patch('Race.animals.generate_random_normal', return_value=5)
+    def test_animal_initialization(self, mock_normal):
+        animal = animals.Racer("Joe", "Dog")
+        self.assertEqual(animal.name, "Joe")
+        self.assertEqual(animal.acceleration, 5)
+
+
     def test_normal_distribution(self):
         self.assertTrue(animals.generate_random_normal(1, 10) > 0)
         with self.assertRaises(ValueError):

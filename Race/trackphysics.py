@@ -10,6 +10,8 @@ class Track:
         By default, start and end nodes a created with a height of 0
         :param length (float): How long the track should be (cannot be changed later)
         """
+        if len(array) == 0:
+            raise ValueError("Track cannot be zero long")
         self.points = array
         self.length = len(array) - 1
 
@@ -48,15 +50,16 @@ class Track:
         return round(time, 4)
 
     # Simulate a race
-    def run_race(self, racers, calculations_per_unit):
+    def run_race(self, racers, calculations_per_unit=1):
         """
-
         :param racers: Array containing each racer
         :param calculations_per_unit: How many simulation iterations per unit of track
         :return:
         """
 
-        # {time: [racers]}
+        if len(racers) == 0:
+            raise ValueError("Can't run a race with no racers")
+
         racer_results = {}
 
         # Run races and record results to racer_results

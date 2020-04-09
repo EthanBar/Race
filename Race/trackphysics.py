@@ -44,9 +44,9 @@ class Track:
             for _ in range(calculations_per_unit):
                 velocity += (racer.acceleration - slope) / calculations_per_unit
                 total_velocity += velocity
-            time += 1 / total_velocity
             if velocity <= 0:
                 return -1  # did not finish
+            time += 1 / total_velocity
         return round(time, 4)
 
     # Simulate a race

@@ -29,11 +29,8 @@ class Tests(unittest.TestCase):
         racer2 = animals.Racer("Joe", "Dog")
         racer2.name = "Joe"
 
-        capturedOutput = io.StringIO()  # TODO
-        sys.stdout = capturedOutput
-        trackphysics.Track.run_race(trackphysics.Track([0, 0]), [racer1, racer2])
-        sys.stdout = sys.__stdout__
-        self.assertEqual("1. Bob finished in 1 seconds!\n2. Joe finished in 2 seconds!\n", capturedOutput.getvalue())
+        results = trackphysics.Track.run_race(trackphysics.Track([0, 0]), [racer1, racer2])
+        self.assertEqual({1: ['Bob'], 2: ['Joe']}, results)
 
     @patch('Race.trackphysics.Track._find_slope', side_effect=[1])
     def test_determine_time_mock_slope(self, mock_slope):

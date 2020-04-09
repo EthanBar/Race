@@ -54,7 +54,7 @@ class Track:
         """
         :param racers: Array containing each racer
         :param calculations_per_unit: How many simulation iterations per unit of track
-        :return:
+        :return: dictionary containing race results {time: [racers]}
         """
 
         if len(racers) == 0:
@@ -70,10 +70,4 @@ class Track:
             else:
                 racer_results[time] = [racer.name]
 
-        # Iterate through race times and print results
-        place = 1
-        for time in sorted(racer_results):
-            for racer_name in racer_results[time]:
-                message = '{}. {} finished in {} seconds!'.format(place, racer_name, time)
-                print(message)
-            place += len(racer_results[time])
+        return racer_results

@@ -84,5 +84,22 @@ class Tests(unittest.TestCase):
         self.assertEqual(trackphysics.Track._determine_time(track, animal, 5), -1)
 
 
+class IntegrationTests(unittest.TestCase):
+
+    def test_track_physics(self):
+        # setting up racers
+        racer1 = animals.Racer("Bob", "Dog")
+        racer1.name = "Bob"
+        racer1.acceleration = 1
+        racer2 = animals.Racer("Joe", "Dog")
+        racer2.name = "Joe"
+        racer2.acceleration = 3
+
+        track = trackphysics.Track([0, 2, 5, 0])
+        results = track.run_race([racer1, racer2], 5)
+
+        self.assertEqual(results, {-1: ['Bob'], 0.5678: ['Joe']})
+
+
 if __name__ == '__main__':
     unittest.main()

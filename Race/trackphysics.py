@@ -46,7 +46,7 @@ class Track:
                 total_velocity += velocity
             time += 1 / total_velocity
             if velocity <= 0:
-                return "-1"  # did not finish
+                return -1  # did not finish
         return round(time, 4)
 
     # Simulate a race

@@ -27,7 +27,16 @@ def race(track, sim_speed, racers):
         name = racer.split(",")[0]
         species = racer.split(",")[1]
         racerlist.append(animals.Racer(name, species))  # add new racer to dictionary
-    racetrack.run_race(racerlist, int(sim_speed))
+    results = racetrack.run_race(racerlist, int(sim_speed))
+    print(results)
+
+    # Iterate through race times and print results
+    place = 1
+    for time in sorted(results):
+        for racer_name in results[time]:
+            message = '{}. {} finished in {} seconds!'.format(place, racer_name, time)
+            print(message)
+        place += len(results[time])
 
 
 if __name__ == '__main__':

@@ -16,7 +16,6 @@ class Tests(unittest.TestCase):
     def test_random_normal(self, mock_normal):
         self.assertEqual(animals.generate_random_normal(1, 1), 3)
 
-
     def test_normal_distribution(self):
         self.assertTrue(animals.generate_random_normal(1, 10) > 0)
         with self.assertRaises(ValueError):
@@ -35,6 +34,11 @@ class Tests(unittest.TestCase):
     def test_incorrect_species_name(self):
         with self.assertRaises(ValueError):
             animals.Racer("Bob", "Sharknoceros")
+
+    @patch('numpy.random.normal', side_effect=[-1, 1])
+    def test_negative_random(self, mock_normal):
+        self.assertEqual(animals.generate_random_normal(1, 1), 1)
+        self.assertEqual(mock_normal._mock_call_count, 2)
 
 
 if __name__ == '__main__':

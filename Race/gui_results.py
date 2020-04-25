@@ -5,7 +5,7 @@ def display_results(results):
     results_window = tkinter.Tk()
     results_window.title("Results")
 
-    header = tkinter.Label(results_window, text="Leaderboard")
+    header = tkinter.Label(results_window, text="Leaderboard", font='Helvetica 18 bold')
     header.pack()
 
     place = 1

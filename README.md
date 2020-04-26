@@ -15,13 +15,19 @@ pip install --user numpy
 ```
 
 ## Usage
-Race is a command line tool
+### GUI
+Race comes with a GUI, to access it run
 ```bash
-python ui.py --track (default=[0,0,0]) --sim_speed (default=3) [animals]
+python3 gui_main.py
+```   
+### CLI
+Race is also a command line tool
+```bash
+python3 ui.py --track (default=[0,0,0]) --sim_speed (default=3) [animals]
 ```
 
 For example, for a flat track of length 2 with an cat and a dog:
 
 ```bash
-python ui.py --track 0,0 Bob,Cat Jack,Dog
+python3 ui.py --track 0,0 Bob,Cat Jack,Dog
 ```

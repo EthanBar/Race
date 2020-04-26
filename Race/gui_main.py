@@ -53,46 +53,47 @@ def run_race():
     gui_results.display_results(results)
 
 
-# Set up window
-roster = tkinter.Tk()
-roster.title("Race Track")
+if __name__ == "__main__":
+    # Set up window
+    roster = tkinter.Tk()
+    roster.title("Race Track")
 
-# Dropdown options
-species = ["Dog", "Cat", "Turtle", "Rabbit", "Elephant"]
+    # Dropdown options
+    species = ["Dog", "Cat", "Turtle", "Rabbit", "Elephant"]
 
-# Header
-roaster_header = tkinter.Label(roster, text="Race Controls", font='Helvetica 18 bold')
-roaster_header.grid(row=0, column=0, columnspan=2, pady=(10, 10))
+    # Header
+    roaster_header = tkinter.Label(roster, text="Race Controls", font='Helvetica 18 bold')
+    roaster_header.grid(row=0, column=0, columnspan=2, pady=(10, 10))
 
-# Buttons
-add_racer = tkinter.Button(
-    text="Add Another Racer",
-    fg="black",
-    bg="white",
-    highlightbackground="blue",
-    width=20,
-    height=2,
-    command=add_choice
-)
-add_racer.grid(row=1, column=0)
+    # Buttons
+    add_racer = tkinter.Button(
+        text="Add Another Racer",
+        fg="black",
+        bg="white",
+        highlightbackground="blue",
+        width=20,
+        height=2,
+        command=add_choice
+    )
+    add_racer.grid(row=1, column=0)
 
-start_race = tkinter.Button(
-    text="Start Race!",
-    fg="black",
-    bg="green",
-    highlightbackground="green",
-    width=20,
-    height=2,
-    command=run_race
-)
-start_race.grid(row=1, column=1)
+    start_race = tkinter.Button(
+        text="Start Race!",
+        fg="black",
+        bg="green",
+        highlightbackground="green",
+        width=20,
+        height=2,
+        command=run_race
+    )
+    start_race.grid(row=1, column=1)
 
-# Header
-roaster_header = tkinter.Label(roster, text="Racer Roster", font='Helvetica 18 bold')
-roaster_header.grid(row=2, column=0, columnspan=2, pady=(10, 10))
+    # Header
+    roaster_header = tkinter.Label(roster, text="Racer Roster", font='Helvetica 18 bold')
+    roaster_header.grid(row=2, column=0, columnspan=2, pady=(10, 10))
 
-# Add one racer by default
-racer_species = []
-add_choice()
+    # Add one racer by default
+    racer_species = []
+    add_choice()
 
-roster.mainloop()
+    roster.mainloop()

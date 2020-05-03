@@ -47,7 +47,7 @@ class Track:
             if velocity <= 0:
                 return -1  # did not finish
             time += 1 / total_velocity
-        return round(time, 4)
+        return round(time * 100, 3)
 
     # Simulate a race
     def run_race(self, racers, calculations_per_unit=1):

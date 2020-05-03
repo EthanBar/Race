@@ -17,7 +17,7 @@ class MedalDisplay:
         # Loop through the top racers, ensuring we don't display over three
         place = 1
         medals_made = 0
-        for time in sorted(results):
+        for time in sorted(results, key=lambda x: (x < 0, x)):
             for racer_name in results[time]:
                 if medals_made < 3:
                     self._create_medal(50 + medals_made * 100, racer_name, place)

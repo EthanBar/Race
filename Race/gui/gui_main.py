@@ -38,7 +38,12 @@ def run_race():
     """
     Runs a race using user input
     """
-    racetrack = trackphysics.Track(list(map(int, track_entry.get().split(","))))
+    try:
+        racetrack = trackphysics.Track(list(map(int, track_entry.get().split(","))))
+    except ValueError:
+        track_header.configure(text="Use numbers separated by commas", fg="red", font='Helvetica 10')
+        return
+
     racers = []
     for racer in racer_species:
         animal = racer.animal.get()
@@ -66,8 +71,8 @@ if __name__ == "__main__":
     roaster_header.grid(row=0, column=0, columnspan=2, pady=(10, 10))
 
     # Track Entry
-    roaster_header = tkinter.Label(roster, text="Track", font='Helvetica 14')
-    roaster_header.grid(row=1, column=0)
+    track_header = tkinter.Label(roster, text="Track", font='Helvetica 14')
+    track_header.grid(row=1, column=0)
     track_entry = tkinter.Entry(roster)
     track_entry.grid(row=1, column=1)
     track_entry.insert(tkinter.END, '0, 1, 2, 3, 4, 0')

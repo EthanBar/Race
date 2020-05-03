@@ -27,7 +27,10 @@ def display_results(results):
     place = 1
     for time in sorted(results, key=lambda x: (x < 0, x)):
         for racer_name in results[time]:
-            result = tkinter.Label(results_window,
-                                   text='{}. {} finished in {} seconds!'.format(place, racer_name, time))
+            if time == -1:
+                text = '{}. {} did not finish.'.format(place, racer_name)
+            else:
+                text = '{}. {} finished in {} seconds!'.format(place, racer_name, time)
+            result = tkinter.Label(results_window, text=text)
             result.pack()
         place += len(results[time])

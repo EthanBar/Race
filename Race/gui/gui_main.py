@@ -31,14 +31,14 @@ def add_choice():
     """
     Adds another set of animal name and species pickers for the user to interact with
     """
-    racer_species.append(InputRow(species, 3 + len(racer_species)))
+    racer_species.append(InputRow(species, 4 + len(racer_species)))
 
 
 def run_race():
     """
     Runs a race using user input
     """
-    racetrack = trackphysics.Track([0, 1, 2, 3, 4, 0])
+    racetrack = trackphysics.Track(list(map(int, track_entry.get().split(","))))
     racers = []
     for racer in racer_species:
         animal = racer.animal.get()
@@ -65,6 +65,13 @@ if __name__ == "__main__":
     roaster_header = tkinter.Label(roster, text="Race Controls", font='Helvetica 18 bold')
     roaster_header.grid(row=0, column=0, columnspan=2, pady=(10, 10))
 
+    # Track Entry
+    roaster_header = tkinter.Label(roster, text="Track", font='Helvetica 14')
+    roaster_header.grid(row=1, column=0)
+    track_entry = tkinter.Entry(roster)
+    track_entry.grid(row=1, column=1)
+    track_entry.insert(tkinter.END, '0, 1, 2, 3, 4, 0')
+
     # Buttons
     add_racer = tkinter.Button(
         text="Add Another Racer",
@@ -75,7 +82,7 @@ if __name__ == "__main__":
         height=2,
         command=add_choice
     )
-    add_racer.grid(row=1, column=0)
+    add_racer.grid(row=2, column=0)
 
     start_race = tkinter.Button(
         text="Start Race!",
@@ -86,11 +93,11 @@ if __name__ == "__main__":
         height=2,
         command=run_race
     )
-    start_race.grid(row=1, column=1)
+    start_race.grid(row=2, column=1)
 
     # Header
     roaster_header = tkinter.Label(roster, text="Racer Roster", font='Helvetica 18 bold')
-    roaster_header.grid(row=2, column=0, columnspan=2, pady=(10, 10))
+    roaster_header.grid(row=3, column=0, columnspan=2, pady=(10, 10))
 
     # Add one racer by default
     racer_species = []

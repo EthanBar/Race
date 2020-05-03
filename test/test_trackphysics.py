@@ -41,7 +41,7 @@ class Tests(unittest.TestCase):
         racer1 = animals.Racer("Bob", "Dog")
         racer1.acceleration = 2
 
-        self.assertEqual(trackphysics.Track._determine_time(track, racer1, 2), 0.6667)
+        self.assertEqual(trackphysics.Track._determine_time(track, racer1, 2), 66.667)
 
     def test_empty_track(self):
         with self.assertRaises(ValueError):
@@ -53,7 +53,7 @@ class Tests(unittest.TestCase):
         track.length = 1
         animal = animals.Racer("Bob", "Dog")
         animal.acceleration = 5
-        self.assertEqual(trackphysics.Track._determine_time(track, animal, 1), 0.25)
+        self.assertEqual(trackphysics.Track._determine_time(track, animal, 1), 25)
 
     def test_length_upper(self):
         track = trackphysics.Track([0, 1])
@@ -98,7 +98,7 @@ class IntegrationTests(unittest.TestCase):
         track = trackphysics.Track([0, 2, 5, 0])
         results = track.run_race([racer1, racer2], 5)
 
-        self.assertEqual(results, {-1: ['Bob'], 0.5678: ['Joe']})
+        self.assertEqual(results, {-1: ['Bob'], 56.782: ['Joe']})
 
 
 if __name__ == '__main__':

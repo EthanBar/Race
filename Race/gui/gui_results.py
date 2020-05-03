@@ -1,4 +1,5 @@
 import tkinter
+from gui import medal
 
 
 def display_results(results):
@@ -10,7 +11,15 @@ def display_results(results):
     results_window = tkinter.Tk()
     results_window.title("Results")
 
-    # Header
+    # Medal Header
+    header = tkinter.Label(results_window, text="Top Finishers", font='Helvetica 18 bold')
+    header.pack()
+
+    # Medal
+    medal_display = medal.MedalDisplay(results_window, results)
+    medal_display.get_canvas().pack()
+
+    # Leaderboard Header
     header = tkinter.Label(results_window, text="Leaderboard", font='Helvetica 18 bold')
     header.pack()
 

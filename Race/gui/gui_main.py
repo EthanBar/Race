@@ -1,7 +1,7 @@
 import tkinter
 import animals
 import trackphysics
-import gui_results
+from gui import gui_results
 
 
 class InputRow:
